@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Yelp for Anything!</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body>
+		<nav>
+			<ul>
+            	<li><a href="/">Home</a></li>
+				<li><a href="/admin">Admin</a></li>
+			</ul>
+		</nav>
+		
+		<script type="text/javascript"> 
+			function insertRating(){
+				var ratee = document.getElementById("ratee").value;
+				var stars = document.getElementById("stars").value;
+				var comment = document.getElementById("comment").value;
+
+				var xhr = new XMLHttpRequest();
+				xhr.open("GET","http://localhost:3000/insertRating?ratee=" + ratee + "&stars=" + stars + "&comment=" + comment, true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+				xhr.send();
+   			}
+			
+			function getAllRatings(){
+				var xhr = new XMLHttpRequest();			
+				
+				xhr.open("GET","http://localhost:3000/getRatings", true);
+				xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+				xhr.onreadystatechange = function() {
+        			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+            			document.getElementById("ratings-div").innerHTML = this.responseText;
+       				}
+				};
+				xhr.send();
+			}
+				function insertMeme(){
+					var filepath= document.getElementById("input").value;
+				
+					var xhr = new XMLHttpRequest();
+					xhr.open("GET", "http://localhost:3000/insertMeme?filepath=" + filepath, true)
+					xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+					xhr.send();
+				
+   			}
+		</script>
+		<input id="input" type="text" accept-charset="UTF-8"/>
+		<button type="button" onclick="insertMeme()">Example Button</button>
+		<button type="button" onclick="getAllRatings()">Get Ratings</button>
+		<div id="ratings-div">
+		</div>
+		
+		<footer>Go Patriots!</footer>
+	</body>
+</html>
