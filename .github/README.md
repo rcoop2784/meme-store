@@ -1,4 +1,4 @@
-# yelpForAnything
+# meme-store
 ![](https://img.shields.io/github/repo-size/timburr1/yelpForAnything)
 ![](https://img.shields.io/github/contributors/timburr1/yelpForAnything)
 ![](https://img.shields.io/github/last-commit/timburr1/yelpForAnything)
